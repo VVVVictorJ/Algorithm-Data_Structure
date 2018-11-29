@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include<cstdio>
 
 void swap(int &a,int &b);
 int* reverse(int* A, int lo, int hi);
