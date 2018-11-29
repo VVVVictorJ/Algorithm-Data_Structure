@@ -43,7 +43,7 @@ int find_ele(LinkList L, int c)
 		return -1;
 	}
 	LinkList p = L->next;
-	while (NULL != p->next)
+	while (NULL != p)
 	{
 		if (c == p->character)
 		{
@@ -62,13 +62,18 @@ int del_ele(LinkList L, int c)
 	}
 	LinkList p = L;
 	int sub = find_ele(L, c);
-	while (NULL != p->next&&sub!=p->subscript)//not satisfied the odds that next isn't NULL and subscript isn't match
+	while (NULL != p)//not satisfied the odds that next isn't NULL and subscript isn't match
 	{
+		//p = p->next;
+		if (sub == p->next->subscript)
+		{
+			LinkList q = p->next;
+			p->next = q->next;
+			free(q);//free the memory
+			return 0;
+		}
 		p = p->next;
 	}
-	LinkList q = p->next;
-	p->next = q->next;
-	free(q);//free the memory
 	return 0;
 }
 
